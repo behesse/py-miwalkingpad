@@ -1,4 +1,4 @@
-# py-xiaomi-walkingpad
+# py-miwalkingpad
 
 Control a Xiaomi WalkingPad from Python using [`python-miio`](https://python-miio.readthedocs.io/en/latest/index.html), with both:
 
@@ -51,24 +51,24 @@ WALKINGPAD_REQUEST_TIMEOUT=5.0
 ### CLI
 
 ```bash
-py-xiaomi-walkingpad status
-py-xiaomi-walkingpad status --quick
-py-xiaomi-walkingpad start
-py-xiaomi-walkingpad stop
-py-xiaomi-walkingpad power-on
-py-xiaomi-walkingpad power-off
-py-xiaomi-walkingpad lock
-py-xiaomi-walkingpad unlock
-py-xiaomi-walkingpad set-speed 3.0
-py-xiaomi-walkingpad set-start-speed 2.0
-py-xiaomi-walkingpad set-mode manual
-py-xiaomi-walkingpad set-sensitivity medium
+miwalkingpad status
+miwalkingpad status --quick
+miwalkingpad start
+miwalkingpad stop
+miwalkingpad power-on
+miwalkingpad power-off
+miwalkingpad lock
+miwalkingpad unlock
+miwalkingpad set-speed 3.0
+miwalkingpad set-start-speed 2.0
+miwalkingpad set-mode manual
+miwalkingpad set-sensitivity medium
 ```
 
 ### TUI
 
 ```bash
-py-xiaomi-walkingpad tui
+miwalkingpad tui
 ```
 
 Core shortcuts:
@@ -100,16 +100,31 @@ This helps separate app-side contention from device/network delay.
 
 ## Architecture overview
 
-- Backend/core: [`WalkingPadAdapter`](src/py_xiaomi_walkingpad/miio_adapter.py), [`AsyncWalkingPadService`](src/py_xiaomi_walkingpad/service.py), [`AsyncEventBus`](src/py_xiaomi_walkingpad/event_bus.py)
-- Shared types/events/errors: [`types/`](src/py_xiaomi_walkingpad/types)
-- Interface layer: CLI + TUI + interface-side composition/factory in [`interface/factory.py`](src/py_xiaomi_walkingpad/interface/factory.py) and config loading in [`interface/config.py`](src/py_xiaomi_walkingpad/interface/config.py)
+- Backend/core: [`WalkingPadAdapter`](miwalkingpad/miio_adapter.py), [`AsyncWalkingPadService`](miwalkingpad/service.py), [`AsyncEventBus`](miwalkingpad/event_bus.py)
+- Shared types/events/errors: [`types/`](miwalkingpad/types)
+- Interface layer: CLI + TUI + interface-side composition/factory in [`interface/factory.py`](miwalkingpad/interface/factory.py) and config loading in [`interface/config.py`](miwalkingpad/interface/config.py)
 
-`AsyncWalkingPadService` in [`service.py`](src/py_xiaomi_walkingpad/service.py) is the single backend API consumed by interfaces.
+`AsyncWalkingPadService` in [`service.py`](miwalkingpad/service.py) is the single backend API consumed by interfaces.
+
+### Module import surface
+
+- Minimal top-level facade in [`miwalkingpad/__init__.py`](miwalkingpad/__init__.py):
+  - `AsyncWalkingPadService`
+  - `WalkingPadAdapter`
+  - `AsyncEventBus`
+- Structured type exports in [`miwalkingpad/types/__init__.py`](miwalkingpad/types/__init__.py) for models/events/errors.
+
+Example:
+
+```python
+from miwalkingpad import AsyncWalkingPadService, WalkingPadAdapter
+from miwalkingpad.types import PadMode, PadStatus, ErrorEvent
+```
 
 ## Testing
 
 ```bash
-PYTHONPATH=src python -m pytest -q
+python -m pytest -q
 ```
 
 Current tests cover configuration, event bus fan-out, and service polling/snapshot behavior.

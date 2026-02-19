@@ -7,9 +7,9 @@ from datetime import timedelta
 
 import typer
 
-from py_xiaomi_walkingpad.interface.factory import create_service
-from py_xiaomi_walkingpad.types.models import PadMode, PadSensitivity, PadStatus
-from py_xiaomi_walkingpad.interface.tui import WalkingPadTuiApp
+from miwalkingpad.interface.factory import create_service
+from miwalkingpad.types.models import PadMode, PadSensitivity, PadStatus
+from miwalkingpad.interface.tui import WalkingPadTuiApp
 
 app = typer.Typer(help="WalkingPad CLI")
 

@@ -10,9 +10,9 @@ from textual.containers import Container, Horizontal
 from textual.reactive import reactive
 from textual.widgets import Button, Footer, Header, Input, Log, Select, Static
 
-from py_xiaomi_walkingpad.service import AsyncWalkingPadService
-from py_xiaomi_walkingpad.interface.config import AppConfig
-from py_xiaomi_walkingpad.types.models import PadMode, PadStatus
+from miwalkingpad.service import AsyncWalkingPadService
+from miwalkingpad.interface.config import AppConfig
+from miwalkingpad.types.models import PadMode, PadStatus
 
 
 def _fmt_time(value: timedelta | None) -> str:

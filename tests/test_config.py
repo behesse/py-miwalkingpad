@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from py_xiaomi_walkingpad.types.errors import ConfigurationError
-from py_xiaomi_walkingpad.interface.config import load_config
+from miwalkingpad.types.errors import ConfigurationError
+from miwalkingpad.interface.config import load_config
 
 
 def test_load_config_success(monkeypatch):

@@ -4,7 +4,7 @@ import asyncio
 
 import pytest
 
-from py_xiaomi_walkingpad.event_bus import AsyncEventBus
+from miwalkingpad.event_bus import AsyncEventBus
 
 
 @pytest.mark.asyncio

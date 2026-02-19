@@ -5,15 +5,15 @@ from collections.abc import AsyncIterator, Callable
 from datetime import datetime, UTC
 from time import perf_counter
 
-from py_xiaomi_walkingpad.event_bus import AsyncEventBus
-from py_xiaomi_walkingpad.types.events import (
+from miwalkingpad.event_bus import AsyncEventBus
+from miwalkingpad.types.events import (
     CommandExecutedEvent,
     ErrorEvent,
     OperationTimingEvent,
     StatusUpdatedEvent,
 )
-from py_xiaomi_walkingpad.types.models import CommandResult, PadMode, PadSensitivity, PadStatus
-from py_xiaomi_walkingpad.miio_adapter import WalkingPadAdapter
+from miwalkingpad.types.models import CommandResult, PadMode, PadSensitivity, PadStatus
+from miwalkingpad.miio_adapter import WalkingPadAdapter
 
 
 class AsyncWalkingPadService:

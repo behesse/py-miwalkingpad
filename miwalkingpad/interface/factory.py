@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from py_xiaomi_walkingpad.event_bus import AsyncEventBus
-from py_xiaomi_walkingpad.service import AsyncWalkingPadService
-from py_xiaomi_walkingpad.interface.config import AppConfig, load_config
-from py_xiaomi_walkingpad.miio_adapter import WalkingPadAdapter
+from miwalkingpad.event_bus import AsyncEventBus
+from miwalkingpad.service import AsyncWalkingPadService
+from miwalkingpad.interface.config import AppConfig, load_config
+from miwalkingpad.miio_adapter import WalkingPadAdapter
 
 
 def create_service(config: AppConfig | None = None) -> tuple[AppConfig, AsyncWalkingPadService]:

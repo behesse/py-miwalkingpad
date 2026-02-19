@@ -12,8 +12,8 @@ from miio.walkingpad import (
     WalkingpadStatus,
 )
 
-from py_xiaomi_walkingpad.types.errors import CommandValidationError, DeviceCommunicationError
-from py_xiaomi_walkingpad.types.models import CommandResult, PadMode, PadSensitivity, PadStatus
+from miwalkingpad.types.errors import CommandValidationError, DeviceCommunicationError
+from miwalkingpad.types.models import CommandResult, PadMode, PadSensitivity, PadStatus
 
 
 @dataclass(slots=True)

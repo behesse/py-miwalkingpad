@@ -1,4 +1,4 @@
-from py_xiaomi_walkingpad.interface.cli import app
+from miwalkingpad.interface.cli import app
 
 
 def run() -> None:

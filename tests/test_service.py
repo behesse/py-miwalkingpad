@@ -5,8 +5,8 @@ from datetime import timedelta
 
 import pytest
 
-from py_xiaomi_walkingpad.service import AsyncWalkingPadService
-from py_xiaomi_walkingpad.types.models import CommandResult, PadMode, PadSensitivity, PadStatus
+from miwalkingpad.service import AsyncWalkingPadService
+from miwalkingpad.types.models import CommandResult, PadMode, PadSensitivity, PadStatus
 
 
 class FakeAdapter:
