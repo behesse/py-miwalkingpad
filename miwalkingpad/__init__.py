@@ -7,11 +7,14 @@ Advanced consumers should import concrete types from structured submodules like
 """
 
 from miwalkingpad.event_bus import AsyncEventBus
+from miwalkingpad.discovery import HandshakeDiscoveryResult, discover_handshake
 from miwalkingpad.miio_adapter import WalkingPadAdapter
 from miwalkingpad.service import AsyncWalkingPadService
 
 __all__ = [
     "AsyncEventBus",
     "AsyncWalkingPadService",
+    "HandshakeDiscoveryResult",
     "WalkingPadAdapter",
+    "discover_handshake",
 ]

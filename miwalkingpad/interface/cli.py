@@ -7,6 +7,8 @@ from datetime import timedelta
 
 import typer
 
+from miwalkingpad.discovery import discover_handshake
+from miwalkingpad.interface.config import load_optional_token
 from miwalkingpad.interface.factory import create_service
 from miwalkingpad.types.models import PadMode, PadSensitivity, PadStatus
 from miwalkingpad.interface.tui import WalkingPadTuiApp
@@ -137,3 +139,27 @@ def set_sensitivity(sensitivity: PadSensitivity = typer.Argument(..., help="high
 @app.command("tui")
 def tui() -> None:
     WalkingPadTuiApp(create_service).run()
+
+
+@app.command("discover")
+def discover(
+    timeout: int = typer.Option(5, "--timeout", min=1, help="Discovery timeout in seconds"),
+) -> None:
+    token = load_optional_token()
+    found = discover_handshake(timeout=timeout, token=token)
+    typer.echo(
+        json.dumps(
+            [
+                {
+                    "ip": item.ip,
+                    "device_id": item.device_id,
+                    "token": item.token,
+                    "auth_ok": item.auth_ok,
+                    "info": item.info,
+                    "auth_error": item.auth_error,
+                }
+                for item in found
+            ],
+            indent=2,
+        )
+    )

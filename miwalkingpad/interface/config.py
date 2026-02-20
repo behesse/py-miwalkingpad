@@ -57,3 +57,10 @@ def load_config() -> AppConfig:
         polling_interval_seconds=polling_interval,
         request_timeout_seconds=request_timeout,
     )
+
+
+def load_optional_token() -> str | None:
+    """Load WALKINGPAD_TOKEN from .env/env without requiring other config fields."""
+    load_dotenv()
+    token = os.getenv("WALKINGPAD_TOKEN", "").strip()
+    return token or None

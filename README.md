@@ -63,6 +63,7 @@ miwalkingpad set-speed 3.0
 miwalkingpad set-start-speed 2.0
 miwalkingpad set-mode manual
 miwalkingpad set-sensitivity medium
+miwalkingpad discover --timeout 8
 ```
 
 ### TUI
@@ -128,6 +129,27 @@ python -m pytest -q
 ```
 
 Current tests cover configuration, event bus fan-out, and service polling/snapshot behavior.
+
+## Discovery
+
+WalkingPad discovery (broadcast, not mDNS) is re-implemented, since python-miio's implementation is not working corrently.
+
+Use:
+
+```bash
+miwalkingpad discover --timeout 8
+```
+
+Output is JSON entries with:
+- `ip`
+- `device_id`
+- `token`
+- `auth_ok` (whether token-based connect/info worked)
+- `info` (device info payload if token auth succeeded)
+- `auth_error` (error text if token auth failed)
+
+If `WALKINGPAD_TOKEN` is set in env / `.env`, discovery will automatically try
+token-auth and fetch extra device info for each discovered IP.
 
 ## License
 
